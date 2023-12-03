@@ -29,13 +29,23 @@ public class Casa extends Vivienda {
     }
     @Override
     public void cargarConsumo(int año, Mes mes, int consumo){
+        if(!getConsumoPorAño().containsKey(año)){
+            getConsumoPorAño().put(año,new HashMap<>());
 
-   if(getConsumoPorAño().containsKey(año) && getConsumoPorAño().get(año).containsKey(mes)){
-       System.err.println("NO");
-   }
-   else {
-       getConsumoPorAño().get(año).put(mes, consumo);
-       System.out.println("Si");
-   }
+        }
+        if(getConsumoPorAño().get(año).containsKey(mes)){
+            System.err.println("Los datos del mes "+ mes + " ya han sido cargados para el año " + año + ".");
+        }
+        if(getConsumoPorAño().containsKey(año) && !getConsumoPorAño().get(año).containsKey(mes)){
+            getConsumoPorAño().get(año).put(mes,consumo);
+            System.out.println("se han cargado los datos del año " + año + "del mes " + mes + " exitosamente.");
+        }
     }
+
+    public void calcularPago(){
+        
+    }
+//consumoporaño
+// consumos.get(año).put(mes, kwh);
+//getConsumoPorAño().get(año).put(mes,consumo);
 }
